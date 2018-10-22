@@ -1,8 +1,9 @@
 import { Face, cellsArray } from "./Face";
+import { CubeSolver } from "./CubeSolver";
 
 export class Cube {
 
-    private faces: Array<Face> = [];
+    public faces: Array<Face> = [];
 
     constructor(stateString?: string) {
         if(stateString) {
@@ -19,6 +20,11 @@ export class Cube {
                 this.faces.push(new Face(faceData));
             }
         }
+    }
+
+    public solve(): string {
+        let solver = new CubeSolver(this);
+        return solver.getSolve();
     }
 
 }
