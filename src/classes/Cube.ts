@@ -1,25 +1,43 @@
 import { Face, cellsArray } from "./Face";
 import { CubeSolver } from "./CubeSolver";
 
+const CubeJS = require('cubejs');
+
 export class Cube {
 
-    public faces: Array<Face> = [];
+    private _faces: Array<Face> = [];
+    public get faces(): Array<Face> {
+        this._faces = [];
+        let facesData = this.cube.asString().split('');
+        for (let i = 0; i < 6; i++) {
+            this._faces.push( new Face(facesData.slice(i * 9, i * 9 + 9).join('')) );
+        }
+        return this._faces;
+    }
+    public set faces(value: Array<Face>) {
+        this._faces = value;
+        console.error('DO NEVER CALL THIS / YOU FUCKED UP');
+    }
+    private cube = new CubeJS();
+    private moves: String[] = [];
 
     constructor(stateString?: string) {
+
         if(stateString) {
-            let facesData = stateString.split('');
-            for (let i = 0; i < 6; i++) {
-                this.faces.push( new Face(facesData.slice(i * 9, i * 9 + 9).join('')) );
-            }
+            this.cube = CubeJS.fromString(stateString);
         } else {
-            for (let i = 0; i < 6; i++) {
-                let faceData = '';
-                for (let j = 0; j < 9; j++) {
-                    faceData += cellsArray[i];
-                }
-                this.faces.push(new Face(faceData));
-            }
+            this.cube = new CubeJS();
         }
+    }
+
+    public randomize() {
+        this.cube.randomize();
+    }
+
+    public move(move: string) {
+        // console.log('MOVE:' +  move);
+        this.cube.move(move);
+        this.moves.concat(move.split(' '));
     }
 
     public solve(): string {
@@ -27,4 +45,18 @@ export class Cube {
         return solver.getSolve();
     }
 
+    public getFace(face: number): Face {
+        let facesData = this.cube.asString().split('');
+        return new Face(facesData.slice(face * 9, face * 9 + 9).join(''));
+    }
+
+}
+
+export enum Faces {
+    U = 0,
+    R = 1,
+    F = 2,
+    D = 3,
+    L = 4,
+    B = 5,
 }

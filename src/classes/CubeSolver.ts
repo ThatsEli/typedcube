@@ -1,5 +1,6 @@
 import { Cube } from "./Cube";
 import { cubeSolved } from "./solveTester/CubeSolved";
+import { solveWhiteFace } from "./solveHelper/solveWhiteFace";
 
 export class CubeSolver {
 
@@ -13,6 +14,7 @@ export class CubeSolver {
         if(cubeSolved(this.cube)) {
             return 'Solved!';
         }
+        solveWhiteFace(this.cube);
         return '';
     }
 
