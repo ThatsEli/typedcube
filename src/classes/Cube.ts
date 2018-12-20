@@ -20,11 +20,13 @@ export class Cube {
     }
     private cube = new CubeJS();
     private moves: String[] = [];
+    public originalState: string = '';
 
     constructor(stateString?: string) {
 
         if(stateString) {
             this.cube = CubeJS.fromString(stateString);
+            this.originalState = stateString;
         } else {
             this.cube = new CubeJS();
         }
@@ -32,12 +34,16 @@ export class Cube {
 
     public randomize() {
         this.cube.randomize();
+        this.originalState = this.cube.asString();
+    }
+
+    public getMoves() {
+        return this.moves.join('');
     }
 
     public move(move: string) {
-        // console.log('MOVE:' +  move);
         this.cube.move(move);
-        this.moves.concat(move.split(' '));
+        this.moves = this.moves.concat(move.split(' '));
     }
 
     public solve(): string {
