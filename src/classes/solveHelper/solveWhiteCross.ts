@@ -65,65 +65,50 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
             return '';
         },
 
-        solveSideFaces: () => {
+        solveFontFace: () => {
 
-            let faces = [Faces.F, Faces.R, Faces.B, Faces.L];
-
-            for (let i = 0; i < faces.length; i++) {
-
-                if(faces[i] === Faces.R) { cube.move('U\''); }
-                if(faces[i] === Faces.B) { cube.move('U\' U\''); }
-                if(faces[i] === Faces.L) { cube.move('U'); }
-
-                if(faces[i] === Faces.L) {
-                    console.log(8, cube.faces[faces[i]].data, cube.faces[faces[i]].data[0][1]);
+            let face: Face = cube.faces[Faces.F], color: string;
+            if(face.data[0][1] === 'U') {
+                color = helper.getColor(Faces.F, '01');
+                console.log('Face: Front - Position:', '01');
+                switch (color) {
+                    case 'F': cube.move('F U\' R U'); console.log(cube.faces[Faces.F].data[0][1] !== 'F' ? 'Err1' : ''); break;
+                    case 'L': cube.move('F\' L\''); console.log(cube.faces[Faces.L].data[0][1] !== 'L' ? 'Err2' : ''); break;
+                    case 'R': cube.move('F R'); console.log(cube.faces[Faces.R].data[0][1] !== 'R' ? 'Err3' : ''); break;
+                    case 'B': cube.move('F U R U\''); console.log(cube.faces[Faces.B].data[0][1] !== 'B' ? 'Err4' : ''); break;
                 }
-
-                let face: Face = cube.faces[faces[i]], color: string;
-                if(face.data[0][1] === 'U') {
-                    color = helper.getColor(faces[i], '01');
-                    switch (color) {
-                        case 'F': cube.move('F U\' R U'); break;
-                        case 'L': cube.move('F\' L\''); break;
-                        case 'R': cube.move('F R'); break;
-                        case 'B': cube.move('F U R U\''); break;
-                    }
+            }
+            if(face.data[1][0] === 'U') {
+                color = helper.getColor(Faces.F, '10');
+                console.log('Face: Front - Position:', '10', color);
+                switch (color) {
+                    case 'F': cube.move('U L\' U\''); console.log(cube.faces[Faces.F].data[0][1] !== 'F' ? 'Err5' : ''); break;
+                    case 'L': cube.move('L\''); console.log(cube.faces[Faces.L].data[0][1] !== 'L' ? 'Err6' : ''); break;
+                    case 'R': cube.move('U  U L\' U\' U\''); console.log(cube.faces[Faces.R].data[0][1] !== 'R' ? 'Err7' : ''); break;
+                    case 'B': cube.move('U L\' U'); console.log(cube.faces[Faces.B].data[0][1] !== 'B' ? 'Err8' : ''); break;
                 }
-                if(face.data[1][0] === 'U') {
-                    color = helper.getColor(faces[i], '10');
-                    switch (color) {
-                        case 'F': cube.move('U L\' U\''); break;
-                        case 'L': cube.move('L\''); break;
-                        case 'R': cube.move('U U L\' U U'); break;
-                        case 'B': cube.move('U\' L\' U'); break;
-                    }
+            }
+            if(face.data[1][2] === 'U') {
+                color = helper.getColor(Faces.F, '12');
+                console.log('Face: Front - Position:', '12');
+                switch (color) {
+                    case 'F': cube.move('U\' R U'); console.log(cube.faces[Faces.F].data[0][1] !== 'F' ? 'Err9' : ''); break;
+                    case 'L': cube.move('U U R U U'); console.log(cube.faces[Faces.L].data[0][1] !== 'L' ? 'Err10' : ''); break;
+                    case 'R': cube.move('R'); console.log(cube.faces[Faces.R].data[0][1] !== 'R' ? 'Err11' : ''); break;
+                    case 'B': cube.move('U R U\''); console.log(cube.faces[Faces.B].data[0][1] !== 'B' ? 'Err12' : ''); break;
                 }
-                if(face.data[1][2] === 'U') {
-                    color = helper.getColor(faces[i], '12');
-                    switch (color) {
-                        case 'F': cube.move('U\' R U'); break;
-                        case 'L': cube.move('U U R U U'); break;
-                        case 'R': cube.move('R'); break;
-                        case 'B': cube.move('U R U\''); break;
-                    }
+            }
+            if(face.data[2][1] === 'U') {
+                color = helper.getColor(Faces.F, '21');
+                console.log('Face: Front - Position:', '21');
+                switch (color) {
+                    case 'F': cube.move('U F L\' F\' U\''); console.log(cube.faces[Faces.F].data[0][1] !== 'F' ? 'Err13' : ''); break;
+                    case 'L': cube.move('L F L\' F\''); console.log(cube.faces[Faces.L].data[0][1] !== 'L' ? 'Err14' : ''); break;
+                    case 'R': cube.move('R\' F\' R F '); console.log(cube.faces[Faces.R].data[0][1] !== 'R' ? 'Err15' : ''); break;
+                    case 'B': cube.move('U F\' R F U\''); console.log(cube.faces[Faces.B].data[0][1] !== 'B' ? 'Err16' : ''); break;
                 }
-                if(face.data[2][1] === 'U') {
-                    color = helper.getColor(faces[i], '21');
-                    switch (color) {
-                        case 'F': cube.move('F\' U\' R U'); break;
-                        case 'L': cube.move('F L\' F\''); break;
-                        case 'R': cube.move('F\' R F'); break;
-                        case 'B': cube.move('D R\' B R'); break;
-                    }
-                }
-
-                if(faces[i] === Faces.R) { cube.move('U'); }
-                if(faces[i] === Faces.B) { cube.move('U U'); }
-                if(faces[i] === Faces.L) { cube.move('U\''); }
-
             }
 
-            
         },
 
         solveBottomSide: () => {
@@ -141,10 +126,10 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
                 downFace = cube.faces[Faces.D];
             };
 
-            if(downFace.data[0][1] === 'U') { console.log('[0][1]'); cube.move(''); solve(); }
-            if(downFace.data[1][0] === 'U') { console.log('[1][0]'); cube.move('D'); solve(); }
-            if(downFace.data[1][2] === 'U') { console.log('[1][2]'); cube.move('D\''); solve(); }
-            if(downFace.data[2][1] === 'U') { console.log('[2][1]'); cube.move('D D'); solve(); }
+            if(downFace.data[0][1] === 'U') { cube.move(''); solve(); }
+            if(downFace.data[1][0] === 'U') { cube.move('D'); solve(); }
+            if(downFace.data[1][2] === 'U') { cube.move('D\''); solve(); }
+            if(downFace.data[2][1] === 'U') { cube.move('D D'); solve(); }
         }
 
     };
@@ -152,21 +137,27 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
     // helper.clearDownFace();
     // helper.clearUpperFace();
 
-    while(helper.edgeOnFace('U', Faces.F) || helper.edgeOnFace('U', Faces.R) || helper.edgeOnFace('U', Faces.B) || helper.edgeOnFace('U', Faces.L) || helper.edgeOnFace('U', Faces.D)) {
-        helper.solveSideFaces();
-        helper.solveBottomSide();
+    // while(helper.edgeOnFace('U', Faces.F) || helper.edgeOnFace('U', Faces.R) || helper.edgeOnFace('U', Faces.B) || helper.edgeOnFace('U', Faces.L) || helper.edgeOnFace('U', Faces.D)) {
+    //     helper.solveFontFace();
+    //     helper.solveBottomSide();
 
 
-        console.log(
-            (helper.edgeOnFace('U', Faces.F) ? 'F er ' + cube.faces[Faces.F].data + '|' : 'F ok|'),
-            (helper.edgeOnFace('U', Faces.R) ? 'R er ' + cube.faces[Faces.R].data + '|' : 'R ok|'),
-            (helper.edgeOnFace('U', Faces.B) ? 'B er ' + cube.faces[Faces.B].data + '|' : 'B ok|'),
-            (helper.edgeOnFace('U', Faces.L) ? 'L er ' + cube.faces[Faces.L].data + '|' : 'L ok|'),
-            (helper.edgeOnFace('U', Faces.D) ? 'D er ' + cube.faces[Faces.D].data + '|' : 'D ok|'),
-            cube.originalState
-        );
+    //     // console.log(
+    //     //     (helper.edgeOnFace('U', Faces.F) ? 'F er ' + cube.faces[Faces.F].data + '|' : 'F ok|'),
+    //     //     (helper.edgeOnFace('U', Faces.R) ? 'R er ' + cube.faces[Faces.R].data + '|' : 'R ok|'),
+    //     //     (helper.edgeOnFace('U', Faces.B) ? 'B er ' + cube.faces[Faces.B].data + '|' : 'B ok|'),
+    //     //     (helper.edgeOnFace('U', Faces.L) ? 'L er ' + cube.faces[Faces.L].data + '|' : 'L ok|'),
+    //     //     (helper.edgeOnFace('U', Faces.D) ? 'D er ' + cube.faces[Faces.D].data + '|' : 'D ok|'),
+    //     //     cube.originalState
+    //     // );
 
+    // }
+
+    while(helper.edgeOnFace('U', Faces.F)) {
+        helper.solveFontFace();
     }
+
+    console.log(cube.faces[Faces.F]);
 
     console.log('Solved white edges!', cube.faces[Faces.U]);
 

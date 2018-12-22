@@ -48,6 +48,7 @@ export class Cube {
 
     public solve(): string {
         let solver = new CubeSolver(this);
+        console.log(this.originalState);
         return solver.getSolve();
     }
 
