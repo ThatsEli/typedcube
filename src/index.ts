@@ -1,12 +1,6 @@
 import { Cube } from "./classes/Cube";
 
-// let c = new Cube('DLLFUBDRFULUURLLBDLDRRFLRFFDRUFDRBUBBUFBLUUDFBFLDBDRBR');
-
-// let c = new Cube('FUFUUURUULRLBRLBLFBFBDFRUDDBFLFDBFRRLLDFLBDRRDBUDBLUDR');
-// let c = new Cube('UUFUUULUFDRRLRFDDBUFLRFDFLBRFRDDRLBLBLFLLFBBDUBRDBBURD');
-// let c = new Cube('BDDFUFBLUBDBBRFFDFLURUFDDRULULFDRRLRUUDRLBFRFRLLLBBUBD');
-// let c = new Cube();
-// c.randomize();
+let c = new Cube('RUFFULURFLBRURDDBDLUUBFLDLLLFBBDDBDRBDBRLUURFUFDRBFFLR');
 
 while(true) {
 	let c = new Cube();
@@ -14,5 +8,5 @@ while(true) {
 	console.log(c.solve());
 }
 
-// console.log(c.solve());
+console.log(c.solve());
 // console.log(c.getMoves());
