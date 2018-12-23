@@ -1,29 +1,16 @@
 import { Cube, Faces } from "../Cube";
 import { Face } from "../Face";
+import { edgeOnFace } from "../solveTester/EdgeOnFace";
+import { crossOnFace } from "../solveTester/CrossOnFace";
 import { logManager } from "../manager/logManager";
 
 export function solveWhiteCross(cube: Cube) { // solve the white cross
 
     let helper = {
 
-        edgeOnFace: (edgeFace: string, face: Faces): boolean => {
-            let faceData = cube.faces[face].data;
-            if(faceData[0][1] == edgeFace || faceData[1][0] == edgeFace || faceData[1][2] == edgeFace || faceData[2][1] == edgeFace) {
-                return true;
-            } else return false;
-        },
-
-        crossOnFace: (face: Faces): boolean => {
-            let faceData = cube.faces[face].data, color = faceData[0][1];
-            if(faceData[1][0] !== color) return false;
-            if(faceData[1][2] !== color) return false;
-            if(faceData[2][1] !== color) return false;
-            return true
-        },
-
         clearUpperFace: () => {
             let upperFace = cube.faces[Faces.U];
-            while(helper.edgeOnFace('U', Faces.U)) {
+            while(edgeOnFace(cube, 'U', Faces.U)) {
                 if(upperFace.data[0][1] === 'U') { cube.move('B'); }
                 if(upperFace.data[1][0] === 'U') { cube.move('L'); }
                 if(upperFace.data[1][2] === 'U') { cube.move('R'); }
@@ -269,7 +256,7 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
         }
 
     };
-    while(!helper.crossOnFace(Faces.U)) {
+    while(!crossOnFace(cube, Faces.U)) {
         helper.solveFontFace();
         helper.solveLeftFace();
         helper.solveBackFace();
@@ -277,6 +264,6 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
         helper.solveBottomFace();
     }
 
-    console.log('Solved white cross!', cube.faces[Faces.U].data);
+    logManager.log('Solved white cross!');
 
 }
