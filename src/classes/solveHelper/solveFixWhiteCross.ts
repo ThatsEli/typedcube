@@ -1,6 +1,7 @@
 import { Cube, Faces } from "../Cube";
 import { upCrossCheck } from "../solveTester/UpCrossCheck";
 import { logManager } from "../manager/logManager";
+import { solveWhiteCross } from "./solveWhiteCross";
 
 export function solveFixWhiteCross(cube: Cube): void {
 
@@ -16,7 +17,6 @@ export function solveFixWhiteCross(cube: Cube): void {
 
 		fixWrongCorner() {
 			let corner = helper.getWrongCorner();
-			console.log(corner);
 			switch (corner) {
 				case 'F': cube.move('F F'); break;
 				case 'L': cube.move('L L D'); break;
@@ -28,7 +28,6 @@ export function solveFixWhiteCross(cube: Cube): void {
 
 		fixPositionedCorner(): void {
 			let desination = cube.faces[Faces.F].data[2][1];
-			console.log(desination);
 			switch (desination) {
 				case 'F': cube.move('F F'); break;
 				case 'L': cube.move('D\' L L'); break;
@@ -45,6 +44,7 @@ export function solveFixWhiteCross(cube: Cube): void {
     while(!upCrossCheck(cube)) {
         logManager.log('Cross needs to be fixed...');
         helper.fixWrongCorner();
+        solveWhiteCross(cube);
         needToFix = true;
     }
 

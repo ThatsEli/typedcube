@@ -1,14 +1,13 @@
-import { Face } from "../Face";
+import { Cube, Faces } from "../Cube";
 
-export function faceSolved(face: Face): boolean {
+export function faceSolved(cube: Cube, face: Faces): boolean {
 
-    let faceColor = face.data[0][0];
+    let faceData = cube.faces[face].data,
+        faceColor = faceData[1][1];
 
     for (let i = 0; i < 3; i++) {
-        const row = face.data[i];
         for (let j = 0; j < 3; j++) {
-            const cell = row[j];
-            if(cell !== faceColor) {
+            if(faceData[i][j] !== faceColor) {
                 return false;
             }
         }

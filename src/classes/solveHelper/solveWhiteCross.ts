@@ -264,6 +264,6 @@ export function solveWhiteCross(cube: Cube) { // solve the white cross
         helper.solveBottomFace();
     }
 
-    logManager.log('Solved white cross!');
+    logManager.log('Solved white cross!' + cube.faces[Faces.U].data);
 
 }

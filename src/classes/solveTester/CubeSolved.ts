@@ -4,7 +4,7 @@ import { Cube } from "../Cube";
 export function cubeSolved(cube: Cube): boolean {
 
     for (let i = 0; i < 6; i++) {
-        if(!faceSolved(cube.faces[i])) {
+        if(!faceSolved(cube, i)) {
             return false;
         }
     }

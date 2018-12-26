@@ -1,6 +1,6 @@
 import { Cube } from "./classes/Cube";
 
-// let c = new Cube('BLRUUFBDUFLBURUBUDDLLDFBUFDRDLBDRFFFULRRLBDRFUBLFBDLRR');
+let x = new Cube('RLUFUURBLUBFFRUBFBUDFUFDLRLFDUBDRRLDDLBULFDRDRBFRBLLDB');
 
 while(true) {
 	let c = new Cube();
@@ -8,5 +8,5 @@ while(true) {
 	console.log(c.solve());
 }
 
-// console.log(c.solve());
-// console.log(c.getMoves());
+console.log(x.solve());
+// console.log(x.getMoves());

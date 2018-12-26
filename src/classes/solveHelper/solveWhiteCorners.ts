@@ -1,6 +1,9 @@
 import { Cube, Faces } from "../Cube";
 import { Face } from "../Face";
 import { cornerOnFace } from "../solveTester/CornerOnFace";
+import { allCornersOnFace } from "../solveTester/AllCornersOnFace";
+import { logManager } from "../manager/logManager";
+import { faceSolved } from "../solveTester/FaceSolved";
 
 export function solveWhiteCorners(cube: Cube): void {
 
@@ -81,7 +84,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.F),
             	colors = helper.getColors(Faces.F, position);
 
-            console.log('Face: Front Pos:', position, 'Colors:', colors);
+            // console.log('Face: Front Pos:', position, 'Colors:', colors);
 
 			if(position === 'L') {
 				if(colors === 'LF') { cube.move('D L D\' L\''); helper.errorCheck(Faces.U, 2, 0, 'U', 9); }
@@ -102,7 +105,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.L),
             	colors = helper.getColors(Faces.L, position);
 
-            console.log('Face: Left Pos:', position, 'Colors:', colors);
+            // console.log('Face: Left Pos:', position, 'Colors:', colors);
 
 			if(position === 'L') {
 				if(colors === 'BL') { cube.move('D B D\' B\''); helper.errorCheck(Faces.U, 0, 0, 'U', 17); }
@@ -123,7 +126,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.B),
             	colors = helper.getColors(Faces.B, position);
 
-            console.log('Face: Back Pos:', position, 'Colors:', colors);
+            // console.log('Face: Back Pos:', position, 'Colors:', colors);
 
 			if(position === 'L') {
 				if(colors === 'RB') { cube.move('D R D\' R\''); helper.errorCheck(Faces.U, 0, 2, 'U', 25); }
@@ -144,9 +147,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.R),
             	colors = helper.getColors(Faces.R, position);
 
-            console.log('Face: Right Pos:', position, 'Colors:', colors);
-
-			console.log(cube.faces[Faces.R].data[2]);
+            // console.log('Face: Right Pos:', position, 'Colors:', colors);
 
 			if(position === 'L') {
 				if(colors === 'FR') { cube.move('D F D\' F\''); helper.errorCheck(Faces.U, 2, 2, 'U', 33); }
@@ -160,36 +161,44 @@ export function solveWhiteCorners(cube: Cube): void {
 				if(colors === 'FL') { cube.move('F\' D D F'); helper.errorCheck(Faces.U, 2, 0, 'U', 40); }
 			}
 
-			console.log(cube.faces[Faces.U].data);
-
         },
 
         insertDownCorners: (): void => {
-        	let faceData = cube.faces[Faces.D].data,
-        		colors = helper.getColors(Faces.D, '');
+        	let faceData = cube.faces[Faces.D].data;
 
-        	if(faceData[0][2] === 'U') cube.move('D\'');
-        	if(faceData[2][2] === 'U') cube.move('D\' D\'');
-        	if(faceData[2][0] === 'U') cube.move('D');
+        	if(faceData[0][2] === 'U') { cube.move('D\''); } else
+        	if(faceData[2][2] === 'U') { cube.move('D\' D\''); } else
+        	if(faceData[2][0] === 'U') { cube.move('D'); }
 
-        	switch (colors) {
-        		case 'FL': cube.move('F\' D F L D\' D\' L\''); break;
-        		case 'RF': cube.move('D R\' D\' D\' R D D F D\' F\''); break;
-        		case 'BR': cube.move('D D B\' D B D\' R D\' R\''); break;
-				case 'LB': cube.move('D\' L\' D\' D\' L D D B D\' B\''); break;
+        	let colors: string = helper.getColors(Faces.D, '');
 
-        		default: console.log('Error while inserting bottom corners'); process.exit(); break;
-        	}
+        	if(cube.faces[Faces.D].data[0][0] === 'U') {
+        		switch (colors) {
+	        		case 'FL': cube.move('F\' D F L D\' D\' L\''); break;
+	        		case 'RF': cube.move('D R\' D\' D\' R D D F D\' F\''); break;
+	        		case 'BR': cube.move('D D B\' D B D\' R D\' R\''); break;
+					case 'LB': cube.move('D\' L\' D\' D\' L D D B D\' B\''); break;
+
+	        		default: console.log('Error while inserting bottom corners'); process.exit(); break;
+	        	}
+        	} else { console.log('Another error while inserting bottom corners'); process.exit(); }
 
         },
 
 	};
 
-	while(cornerOnFace(cube, 'U', Faces.R)) {
-		// console.clear();
-		console.log('Positioning corner');
-		helper.insertRightCorners();
-		// process.exit();
+	while(
+		!allCornersOnFace(cube, 'U', Faces.U)
+	) {
+		// console.log('Positioning corner');
+		if(cornerOnFace(cube, 'U', Faces.F)) { helper.insertFrontCorners(); }
+		if(cornerOnFace(cube, 'U', Faces.L)) { helper.insertLeftCorners(); }
+		if(cornerOnFace(cube, 'U', Faces.B)) { helper.insertBackCorners(); }
+		if(cornerOnFace(cube, 'U', Faces.R)) { helper.insertRightCorners(); }
+		if(cornerOnFace(cube, 'U', Faces.D)) { helper.insertDownCorners(); }
 	}
+
+	logManager.log('Solved white corners!' + cube.faces[Faces.U].data);
+
 
 }
