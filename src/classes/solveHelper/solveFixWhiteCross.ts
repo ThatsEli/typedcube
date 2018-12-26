@@ -43,7 +43,7 @@ export function solveFixWhiteCross(cube: Cube): void {
 	let needToFix: boolean = false;
 
     while(!upCrossCheck(cube)) {
-        logManager.log('Cross needs to be fixed...');#
+        logManager.log('Cross needs to be fixed...');
         helper.fixWrongCorner();
         needToFix = true;
     }
