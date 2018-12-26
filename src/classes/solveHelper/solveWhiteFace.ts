@@ -3,7 +3,7 @@ import { faceSolved } from "../solveTester/FaceSolved";
 import { solveWhiteCross } from "./solveWhiteCross";
 import { solveFixWhiteCross } from "./solveFixWhiteCross";
 import { solveWhiteCorners } from "./solveWhiteCorners";
-import { logManager } from "../manager/logManager";
+import { logManager, LogLevel } from "../manager/logManager";
 
 export function solveWhiteFace(cube: Cube) {
 
@@ -12,8 +12,10 @@ export function solveWhiteFace(cube: Cube) {
     solveWhiteCorners(cube);
 
     if(!faceSolved(cube, Faces.U)) {
-    	logManager.log('Error while solving upper face!')
+    	logManager.log('Error while solving upper face', LogLevel.error);
     	process.exit();
     }
+
+	logManager.log('Solved white face', LogLevel.success);
 
 }

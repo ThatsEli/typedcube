@@ -1,6 +1,6 @@
 import { Cube, Faces } from "../Cube";
 import { upCrossCheck } from "../solveTester/UpCrossCheck";
-import { logManager } from "../manager/logManager";
+import { logManager, LogLevel } from "../manager/logManager";
 import { solveWhiteCross } from "./solveWhiteCross";
 
 export function solveFixWhiteCross(cube: Cube): void {
@@ -11,7 +11,7 @@ export function solveFixWhiteCross(cube: Cube): void {
 			if(cube.faces[Faces.L].data[0][1] !== 'L') return 'L';
 			if(cube.faces[Faces.R].data[0][1] !== 'R') return 'R';
 			if(cube.faces[Faces.B].data[0][1] !== 'B') return 'B';
-			console.log('Error while fixing upper cross, exiting...');
+			logManager.log('Error while fixing upper cross', LogLevel.error);
 			process.exit(); return '';
 		},
 
@@ -33,7 +33,7 @@ export function solveFixWhiteCross(cube: Cube): void {
 				case 'L': cube.move('D\' L L'); break;
 				case 'R': cube.move('D R R'); break;
 				case 'B': cube.move('D D B B'); break;
-				default: console.log('Error while fixing the upper cross.'); break;
+				default: logManager.log('Error while fixing upper cross', LogLevel.error); break;
 			}
 		}
 
@@ -42,12 +42,12 @@ export function solveFixWhiteCross(cube: Cube): void {
 	let needToFix: boolean = false;
 
     while(!upCrossCheck(cube)) {
-        logManager.log('Cross needs to be fixed...');
+        logManager.log('Cross needs to be fixed', LogLevel.warning);
         helper.fixWrongCorner();
         solveWhiteCross(cube);
         needToFix = true;
     }
 
-    if(needToFix) logManager.log('Fixed upper cross.');
+    if(needToFix) logManager.log('Fixed upper cross', LogLevel.success);
 
 }

@@ -2,7 +2,7 @@ import { Cube, Faces } from "../Cube";
 import { Face } from "../Face";
 import { cornerOnFace } from "../solveTester/CornerOnFace";
 import { allCornersOnFace } from "../solveTester/AllCornersOnFace";
-import { logManager } from "../manager/logManager";
+import { logManager, LogLevel } from "../manager/logManager";
 import { faceSolved } from "../solveTester/FaceSolved";
 
 export function solveWhiteCorners(cube: Cube): void {
@@ -13,39 +13,37 @@ export function solveWhiteCorners(cube: Cube): void {
         	let faceData = cube.faces[face].data;
         	switch (face) {
         		case Faces.F:
-        			if(faceData[0][0] == 'U') { cube.move('F\' D\' F D'); console.log(cube.faces[face].data[2][0] !== 'U' ? 'Err1' : ''); return 'L'; }
-        			if(faceData[0][2] == 'U') { cube.move('F D F\' D\''); console.log(cube.faces[face].data[2][2] !== 'U' ? 'Err2' : ''); return 'R'; }
+        			if(faceData[0][0] == 'U') { cube.move('F\' D\' F D'); helper.errorCheck(face, 2, 0, 'U', 1); return 'L'; }
+        			if(faceData[0][2] == 'U') { cube.move('F D F\' D\''); helper.errorCheck(face, 2, 2, 'U', 2); return 'R'; }
         			if(faceData[2][0] == 'U') { return 'L'; }
         			if(faceData[2][2] == 'U') { return 'R'; }
         			break;
         		case Faces.L:
-        			if(faceData[0][0] == 'U') { cube.move('L\' D\' L D'); console.log(cube.faces[face].data[2][0] !== 'U' ? 'Err3' : ''); return 'L'; }
-        			if(faceData[0][2] == 'U') { cube.move('L D L\' D\''); console.log(cube.faces[face].data[2][2] !== 'U' ? 'Err4' : ''); return 'R'; }
+        			if(faceData[0][0] == 'U') { cube.move('L\' D\' L D'); helper.errorCheck(face, 2, 0, 'U', 3); return 'L'; }
+        			if(faceData[0][2] == 'U') { cube.move('L D L\' D\''); helper.errorCheck(face, 2, 2, 'U', 4); return 'R'; }
         			if(faceData[2][0] == 'U') { return 'L'; }
         			if(faceData[2][2] == 'U') { return 'R'; }
         			break;
         		case Faces.B:
-        			if(faceData[0][0] == 'U') { cube.move('B\' D\' B D'); console.log(cube.faces[face].data[2][0] !== 'U' ? 'Err5' : ''); return 'L'; }
-        			if(faceData[0][2] == 'U') { cube.move('B D B\' D\''); console.log(cube.faces[face].data[2][2] !== 'U' ? 'Err6' : ''); return 'R'; }
+        			if(faceData[0][0] == 'U') { cube.move('B\' D\' B D'); helper.errorCheck(face, 2, 0, 'U', 5); return 'L'; }
+        			if(faceData[0][2] == 'U') { cube.move('B D B\' D\''); helper.errorCheck(face, 2, 2, 'U', 6); return 'R'; }
         			if(faceData[2][0] == 'U') { return 'L'; }
         			if(faceData[2][2] == 'U') { return 'R'; }
         			break;
         		case Faces.R:
-        			if(faceData[0][0] == 'U') { cube.move('R\' D\' R D'); console.log(cube.faces[face].data[2][0] !== 'U' ? 'Err7' : ''); return 'L'; }
-        			if(faceData[0][2] == 'U') { cube.move('R D R\' D\''); console.log(cube.faces[face].data[2][2] !== 'U' ? 'Err8' : ''); return 'R'; }
+        			if(faceData[0][0] == 'U') { cube.move('R\' D\' R D'); helper.errorCheck(face, 2, 0, 'U', 7); return 'L'; }
+        			if(faceData[0][2] == 'U') { cube.move('R D R\' D\''); helper.errorCheck(face, 2, 2, 'U', 8); return 'R'; }
         			if(faceData[2][0] == 'U') { return 'L'; }
         			if(faceData[2][2] == 'U') { return 'R'; }
         			break;
         	}
-   			console.log(face, 'Error while positioning corners.');
+   			logManager.log('Error while positioning corner for upper face', LogLevel.error);
 			process.exit(); return '';
         },
 
         errorCheck: (face: Faces, pos1: number, pos2: number, compare: string, errorId: number): void => {
         	if(cube.faces[face].data[pos1][pos2] !== compare) {
-        		console.log('CornersErr' + errorId);
-        		console.log(face, pos1, pos2, compare);
-
+                logManager.log('Error while solving corners. ID:' + errorId, LogLevel.error);
         		process.exit();
         	}
         },
@@ -74,7 +72,7 @@ export function solveWhiteCorners(cube: Cube): void {
             		break;
             }
 
-            console.log('Error while getting corner color', face, position, 'x');
+            logManager.log('Error while getting corner color', LogLevel.error);
     		process.exit(); return '';
 
         },
@@ -84,7 +82,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.F),
             	colors = helper.getColors(Faces.F, position);
 
-            // console.log('Face: Front Pos:', position, 'Colors:', colors);
+            logManager.log('Inserting corner on the front face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'LF') { cube.move('D L D\' L\''); helper.errorCheck(Faces.U, 2, 0, 'U', 9); }
@@ -105,7 +103,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.L),
             	colors = helper.getColors(Faces.L, position);
 
-            // console.log('Face: Left Pos:', position, 'Colors:', colors);
+            logManager.log('Inserting corner on the left face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'BL') { cube.move('D B D\' B\''); helper.errorCheck(Faces.U, 0, 0, 'U', 17); }
@@ -126,7 +124,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.B),
             	colors = helper.getColors(Faces.B, position);
 
-            // console.log('Face: Back Pos:', position, 'Colors:', colors);
+            logManager.log('Inserting corner on the back face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'RB') { cube.move('D R D\' R\''); helper.errorCheck(Faces.U, 0, 2, 'U', 25); }
@@ -147,7 +145,7 @@ export function solveWhiteCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.R),
             	colors = helper.getColors(Faces.R, position);
 
-            // console.log('Face: Right Pos:', position, 'Colors:', colors);
+            logManager.log('Inserting corner on the right face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'FR') { cube.move('D F D\' F\''); helper.errorCheck(Faces.U, 2, 2, 'U', 33); }
@@ -164,6 +162,9 @@ export function solveWhiteCorners(cube: Cube): void {
         },
 
         insertDownCorners: (): void => {
+
+            logManager.log('Inserting corner on the down face', LogLevel.info);
+
         	let faceData = cube.faces[Faces.D].data;
 
         	if(faceData[0][2] === 'U') { cube.move('D\''); } else
@@ -179,9 +180,9 @@ export function solveWhiteCorners(cube: Cube): void {
 	        		case 'BR': cube.move('D D B\' D B D\' R D\' R\''); break;
 					case 'LB': cube.move('D\' L\' D\' D\' L D D B D\' B\''); break;
 
-	        		default: console.log('Error while inserting bottom corners'); process.exit(); break;
+                    default: logManager.log('Error while inserting bottom corner', LogLevel.error); process.exit(); break;
 	        	}
-        	} else { console.log('Another error while inserting bottom corners'); process.exit(); }
+            } else { logManager.log('Another error while inserting bottom corners', LogLevel.error); process.exit(); }
 
         },
 
@@ -190,7 +191,6 @@ export function solveWhiteCorners(cube: Cube): void {
 	while(
 		!allCornersOnFace(cube, 'U', Faces.U)
 	) {
-		// console.log('Positioning corner');
 		if(cornerOnFace(cube, 'U', Faces.F)) { helper.insertFrontCorners(); }
 		if(cornerOnFace(cube, 'U', Faces.L)) { helper.insertLeftCorners(); }
 		if(cornerOnFace(cube, 'U', Faces.B)) { helper.insertBackCorners(); }
@@ -198,7 +198,7 @@ export function solveWhiteCorners(cube: Cube): void {
 		if(cornerOnFace(cube, 'U', Faces.D)) { helper.insertDownCorners(); }
 	}
 
-	logManager.log('Solved white corners!' + cube.faces[Faces.U].data);
+	logManager.log('Solved white corners!', LogLevel.success);
 
 
 }
