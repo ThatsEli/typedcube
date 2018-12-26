@@ -116,14 +116,35 @@ export function solveWhiteCorners(cube: Cube): void {
 
         },
 
+        insertBackCorners: (): void => {
+
+            let position = helper.positionCorner(Faces.B),
+            	colors = helper.getColors(Faces.B, position);
+
+            console.log('Face: Back Pos:', position, 'Colors:', colors);
+
+			if(position === 'L') {
+				if(colors === 'RB') { cube.move('D R D\' R\''); helper.errorCheck(Faces.U, 0, 0, 'U', 25); }
+				if(colors === 'BL') { cube.move('D D B D\' B\''); helper.errorCheck(Faces.U, 2, 0, 'U', 26); }
+				if(colors === 'LF') { cube.move('D\' L D\' L\''); helper.errorCheck(Faces.U, 2, 2, 'U', 27); }
+				if(colors === 'FR') { cube.move('F D\' F\''); helper.errorCheck(Faces.U, 0, 2, 'U', 28); }
+			} else if(position === 'R') {
+				if(colors === 'BR') { cube.move('D D B\' D B'); helper.errorCheck(Faces.U, 0, 0, 'U', 29); }
+				if(colors === 'LB') { cube.move('D\' L\' D L'); helper.errorCheck(Faces.U, 2, 0, 'U', 30); }
+				if(colors === 'FL') { cube.move('F\' D F'); helper.errorCheck(Faces.U, 2, 2, 'U', 31); }
+				if(colors === 'RF') { cube.move('R\' D D R'); helper.errorCheck(Faces.U, 0, 2, 'U', 32); }
+			}
+
+        },
+
 
 
 	};
 
-	while(cornerOnFace(cube, 'U', Faces.L)) {
+	while(cornerOnFace(cube, 'U', Faces.B)) {
 		// console.clear();
 		console.log('Positioning corner');
-		helper.insertLeftCorners();
+		helper.insertBackCorners();
 		// process.exit();
 	}
 
