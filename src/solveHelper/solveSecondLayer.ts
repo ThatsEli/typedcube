@@ -117,11 +117,89 @@ export function solveSecondLayer(cube: Cube): void {
         	
         },
 
+        positionBackCorners: (): void => {
+
+        	switch (helper.getColors(Faces.B)) {
+        		case 'FL':  /* --- */
+	        		cube.move('D D D L D\' L\' D\' F\' D F');
+	        		helper.errorCheck(Faces.F, 1, 0, Faces.L, 1, 2, 17);
+	        		break;
+	        	case 'LF': 
+	        		cube.move('D D\' F\' D F D L D\' L\'');
+	        		helper.errorCheck(Faces.F, 1, 0, Faces.L, 1, 2, 18);
+	        		break;
+	        	case 'FR':  /* --- */
+	        		cube.move('D D D\'  R\' D R D F D\' F\'');
+	        		helper.errorCheck(Faces.F, 1, 2, Faces.R, 1, 0, 19);
+	        		break;
+	        	case 'RF': 
+	        		cube.move('F D\' F\' D\' R\' D R');
+	        		helper.errorCheck(Faces.F, 1, 2, Faces.R, 1, 0, 20);
+	        		break;
+        		case 'LB':  /* --- */
+	        		cube.move('D D B D\' B\' D\' L\' D L');
+	        		helper.errorCheck(Faces.L, 1, 0, Faces.B, 1, 2, 21);
+	        		break;
+	        	case 'BL':
+	        		cube.move('D\' L\' D L D B D\' B\'');
+	        		helper.errorCheck(Faces.L, 1, 0, Faces.B, 1, 2, 22);
+	        		break;
+	        	case 'RB':  /* --- */
+	        		cube.move('D\' D\' B\' D B D R D\' R\'');
+	        		helper.errorCheck(Faces.R, 1, 2, Faces.B, 1, 0, 23);
+	        		break;
+	        	case 'BR': 
+	        		cube.move('D R D\' R\' D\' B\' D B');
+	        		helper.errorCheck(Faces.R, 1, 2, Faces.B, 1, 0, 24);
+	        		break;
+        	}
+        	
+        },
+
+        positionRightCorners: (): void => {
+
+        	switch (helper.getColors(Faces.R)) {
+        		case 'FL':  /* --- */
+	        		cube.move('D\' D L D\' L\' D\' F\' D F');
+	        		helper.errorCheck(Faces.F, 1, 0, Faces.L, 1, 2, 25);
+	        		break;
+	        	case 'LF': 
+	        		cube.move('D F\' D F D L D\' L\'');
+	        		helper.errorCheck(Faces.F, 1, 0, Faces.L, 1, 2, 26);
+	        		break;
+	        	case 'FR':  /* --- */
+	        		cube.move('D\' D\' R\' D R D F D\' F\'');
+	        		helper.errorCheck(Faces.F, 1, 2, Faces.R, 1, 0, 27);
+	        		break;
+	        	case 'RF': 
+	        		cube.move('D F D\' F\' D\' R\' D R');
+	        		helper.errorCheck(Faces.F, 1, 2, Faces.R, 1, 0, 28);
+	        		break;
+        		case 'LB':  /* --- */
+	        		cube.move('D\' B D\' B\' D\' L\' D L');
+	        		helper.errorCheck(Faces.L, 1, 0, Faces.B, 1, 2, 29);
+	        		break;
+	        	case 'BL':
+	        		cube.move('L\' D L D B D\' B\'');
+	        		helper.errorCheck(Faces.L, 1, 0, Faces.B, 1, 2, 30);
+	        		break;
+	        	case 'RB':  /* --- */
+	        		cube.move('D\' B\' D B D R D\' R\'');
+	        		helper.errorCheck(Faces.R, 1, 2, Faces.B, 1, 0, 31);
+	        		break;
+	        	case 'BR': 
+	        		cube.move('D D R D\' R\' D\' B\' D B');
+	        		helper.errorCheck(Faces.R, 1, 2, Faces.B, 1, 0, 32);
+	        		break;
+        	}
+        	
+        },
+
 	};
 
-	while(['FL', 'LF', 'FR', 'RF', 'LB', 'BL', 'RB', 'BR'].indexOf(helper.getColors(Faces.L)) > -1) {
-		console.log('positioning left corner' + helper.getColors(Faces.L));
-		helper.positionLeftCorners();
+	while(['FL', 'LF', 'FR', 'RF', 'LB', 'BL', 'RB', 'BR'].indexOf(helper.getColors(Faces.R)) > -1) {
+		console.log('positioning left corner ' + helper.getColors(Faces.R));
+		helper.positionRightCorners();
 	}
 
 
