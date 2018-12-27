@@ -195,12 +195,25 @@ export function solveSecondLayer(cube: Cube): void {
         	
         },
 
-	};
+        layerCornerOnFace: (face: Faces): boolean => {
+		let layerCorners = ['FL', 'LF', 'FR', 'RF', 'LB', 'BL', 'RB', 'BR'];
 
-	while(['FL', 'LF', 'FR', 'RF', 'LB', 'BL', 'RB', 'BR'].indexOf(helper.getColors(Faces.R)) > -1) {
-		console.log('positioning left corner ' + helper.getColors(Faces.R));
+        	return layerCorners.indexOf(helper.getColors(face)) > -1;
+        },
+
+	};	
+
+	while(
+		helper.layerCornerOnFace(Faces.F) || helper.layerCornerOnFace(Faces.L) ||
+		helper.layerCornerOnFace(Faces.B) || helper.layerCornerOnFace(Faces.R)
+	) {
+		logManager.log('Positioning corner on second layer', LogLevel.info);
+		helper.positionFrontCorners();
+		helper.positionLeftCorners();
+		helper.positionBackCorners();
 		helper.positionRightCorners();
 	}
 
+	logManager.log('Solved second layer', LogLevel.success);
 
 }

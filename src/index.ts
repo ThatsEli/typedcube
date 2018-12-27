@@ -1,13 +1,13 @@
 import { Cube } from "./classes/Cube";
 
-let x = new Cube('UBBLUDRRRFFRURLLUFDDUUFRLUBBLDRDFFRUBBFLLBLFUDDRDBFLBD');
+let x = new Cube('DUFUUDFBLUFRBRRUUBDRFDFLLLRDFBDDFFDLRRLLLLDBBUBBFBUURR');
 
-while(true) {
-	let c = new Cube();
-	c.randomize();
-	console.log(c.solve());
-	console.log(c.getMoves().length);
-}
+// while(true) {
+// 	let c = new Cube();
+// 	c.randomize();
+// 	console.log(c.solve());
+// 	console.log(c.getMoves().length);
+// }
 
 console.log(x.solve());
 console.log(x.getMoves());

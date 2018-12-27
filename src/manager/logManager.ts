@@ -5,7 +5,7 @@ export class logManager {
     public static logLevel: number = 2;
 
     public static log(message: string, level: number) {
-    	if(level >= this.logLevel) {
+    	if(level >= this.logLevel && this.enable) {
     		console.log(message);
     	}
     }
