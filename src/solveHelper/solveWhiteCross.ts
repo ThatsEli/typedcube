@@ -1,7 +1,7 @@
-import { Cube, Faces } from "../Cube";
-import { Face } from "../Face";
-import { edgeOnFace } from "../solveTester/EdgeOnFace";
-import { crossOnFace } from "../solveTester/CrossOnFace";
+import { Cube, Faces } from "../classes/Cube";
+import { Face } from "../classes/Face";
+import { edgeOnFace } from "../solveTester/edgeOnFace";
+import { crossOnFace } from "../solveTester/crossOnFace";
 import { logManager, LogLevel } from "../manager/logManager";
 
 export function solveWhiteCross(cube: Cube) { // solve the white cross

@@ -1,5 +1,5 @@
-import { faceSolved } from "./FaceSolved";
-import { Cube } from "../Cube";
+import { faceSolved } from "./faceSolved";
+import { Cube } from "../classes/Cube";
 
 export function cubeSolved(cube: Cube): boolean {
 

@@ -1,5 +1,5 @@
-import { Cube, Faces } from "../Cube";
-import { faceSolved } from "../solveTester/FaceSolved";
+import { Cube, Faces } from "../classes/Cube";
+import { faceSolved } from "../solveTester/faceSolved";
 import { solveWhiteCross } from "./solveWhiteCross";
 import { solveFixWhiteCross } from "./solveFixWhiteCross";
 import { solveWhiteCorners } from "./solveWhiteCorners";

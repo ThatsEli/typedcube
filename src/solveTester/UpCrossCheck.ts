@@ -1,4 +1,4 @@
-import { Cube, Faces } from '../Cube';
+import { Cube, Faces } from '../classes/Cube';
 
 export function upCrossCheck(cube: Cube): boolean {
 	if(cube.faces[Faces.F].data[0][1] !== 'F') return false;

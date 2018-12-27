@@ -1,4 +1,4 @@
-import { Cube, Faces } from "../Cube";
+import { Cube, Faces } from "../classes/Cube";
 
 export function allCornersOnFace(cube: Cube, corner: 'U', face: Faces): boolean {
 	let faceData = cube.faces[face].data;

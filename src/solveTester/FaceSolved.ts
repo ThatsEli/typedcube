@@ -1,4 +1,4 @@
-import { Cube, Faces } from "../Cube";
+import { Cube, Faces } from "../classes/Cube";
 
 export function faceSolved(cube: Cube, face: Faces): boolean {
 

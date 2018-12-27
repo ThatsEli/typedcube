@@ -1,4 +1,4 @@
-import { Cube, Faces } from '../Cube';
+import { Cube, Faces } from '../classes/Cube';
 
 export function crossOnFace (cube: Cube, face: Faces): boolean {
     let faceData = cube.faces[face].data, color = faceData[0][1];

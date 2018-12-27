@@ -1,5 +1,5 @@
-import { Cube, Faces } from "../Cube";
-import { upCrossCheck } from "../solveTester/UpCrossCheck";
+import { Cube, Faces } from "../classes/Cube";
+import { upCrossCheck } from "../solveTester/upCrossCheck";
 import { logManager, LogLevel } from "../manager/logManager";
 import { solveWhiteCross } from "./solveWhiteCross";
 

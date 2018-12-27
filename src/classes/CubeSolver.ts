@@ -1,6 +1,6 @@
 import { Cube } from "./Cube";
-import { cubeSolved } from "./solveTester/CubeSolved";
-import { solveWhiteFace } from "./solveHelper/solveWhiteFace";
+import { cubeSolved } from "../solveTester/cubeSolved";
+import { solveWhiteFace } from "../solveHelper/solveWhiteFace";
 
 export class CubeSolver {
 

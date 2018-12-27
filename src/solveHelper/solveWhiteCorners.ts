@@ -1,9 +1,9 @@
-import { Cube, Faces } from "../Cube";
-import { Face } from "../Face";
-import { cornerOnFace } from "../solveTester/CornerOnFace";
-import { allCornersOnFace } from "../solveTester/AllCornersOnFace";
+import { Cube, Faces } from "../classes/Cube";
+import { Face } from "../classes/Face";
+import { cornerOnFace } from "../solveTester/cornerOnFace";
+import { allCornersOnFace } from "../solveTester/allCornersOnFace";
 import { logManager, LogLevel } from "../manager/logManager";
-import { faceSolved } from "../solveTester/FaceSolved";
+import { faceSolved } from "../solveTester/faceSolved";
 
 export function solveWhiteCorners(cube: Cube): void {
 
