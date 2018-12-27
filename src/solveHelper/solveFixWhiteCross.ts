@@ -6,7 +6,7 @@ import { solveWhiteCross } from "./solveWhiteCross";
 export function solveFixWhiteCross(cube: Cube): void {
 
 	let helper = {
-		getWrongCorner(): string {
+		getWrongEdge(): string {
 			if(cube.faces[Faces.F].data[0][1] !== 'F') return 'F';
 			if(cube.faces[Faces.L].data[0][1] !== 'L') return 'L';
 			if(cube.faces[Faces.R].data[0][1] !== 'R') return 'R';
@@ -15,18 +15,18 @@ export function solveFixWhiteCross(cube: Cube): void {
 			process.exit(); return '';
 		},
 
-		fixWrongCorner() {
-			let corner = helper.getWrongCorner();
-			switch (corner) {
+		fixWrongEdge() {
+			let edge = helper.getWrongEdge();
+			switch (edge) {
 				case 'F': cube.move('F F'); break;
 				case 'L': cube.move('L L D'); break;
 				case 'R': cube.move('R R D\''); break;
 				case 'B': cube.move('B B D D'); break;
 			}
-			helper.fixPositionedCorner();
+			helper.fixPositionedEdge();
 		},
 
-		fixPositionedCorner(): void {
+		fixPositionedEdge(): void {
 			let desination = cube.faces[Faces.F].data[2][1];
 			switch (desination) {
 				case 'F': cube.move('F F'); break;
@@ -43,7 +43,7 @@ export function solveFixWhiteCross(cube: Cube): void {
 
     while(!upCrossCheck(cube)) {
         logManager.log('Cross needs to be fixed', LogLevel.warning);
-        helper.fixWrongCorner();
+        helper.fixWrongEdge();
         solveWhiteCross(cube);
         needToFix = true;
     }
