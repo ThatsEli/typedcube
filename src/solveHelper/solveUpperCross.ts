@@ -4,7 +4,7 @@ import { edgeOnFace } from "../solveTester/edgeOnFace";
 import { crossOnFace } from "../solveTester/crossOnFace";
 import { logManager, LogLevel } from "../manager/logManager";
 
-export function solveWhiteCross(cube: Cube) { // solve the white cross
+export function solveUpperCross(cube: Cube) { // solve the white cross
 
     let helper = {
 

@@ -5,7 +5,7 @@ import { allCornersOnFace } from "../solveTester/allCornersOnFace";
 import { logManager, LogLevel } from "../manager/logManager";
 import { faceSolved } from "../solveTester/faceSolved";
 
-export function solveWhiteCorners(cube: Cube): void {
+export function solveUpperCorners(cube: Cube): void {
 
 	let helper = {
 

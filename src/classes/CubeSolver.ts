@@ -1,6 +1,6 @@
 import { Cube, Faces } from "./Cube";
 import { cubeSolved } from "../solveTester/cubeSolved";
-import { solveWhiteFace } from "../solveHelper/solveWhiteFace";
+import { solveUpperFace } from "../solveHelper/solveUpperFace";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 import { solveFixSecondLayer } from "../solveHelper/solveFixSecondLayer";
 
@@ -16,7 +16,7 @@ export class CubeSolver {
         if(cubeSolved(this.cube)) {
             return 'Solved!';
         }
-        solveWhiteFace(this.cube);
+        solveUpperFace(this.cube);
         solveSecondLayer(this.cube);
         solveFixSecondLayer(this.cube);
         return '';

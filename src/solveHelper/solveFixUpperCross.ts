@@ -1,9 +1,9 @@
 import { Cube, Faces } from "../classes/Cube";
 import { upCrossCheck } from "../solveTester/upCrossCheck";
 import { logManager, LogLevel } from "../manager/logManager";
-import { solveWhiteCross } from "./solveWhiteCross";
+import { solveUpperCross } from "./solveUpperCross";
 
-export function solveFixWhiteCross(cube: Cube): void {
+export function solveFixUpperCross(cube: Cube): void {
 
 	let helper = {
 		getWrongEdge(): string {
@@ -44,7 +44,7 @@ export function solveFixWhiteCross(cube: Cube): void {
     while(!upCrossCheck(cube)) {
         logManager.log('Cross needs to be fixed', LogLevel.warning);
         helper.fixWrongEdge();
-        solveWhiteCross(cube);
+        solveUpperCross(cube);
         needToFix = true;
     }
 
