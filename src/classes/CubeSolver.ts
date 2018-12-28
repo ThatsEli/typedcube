@@ -3,6 +3,7 @@ import { cubeSolved } from "../solveTester/cubeSolved";
 import { solveUpperFace } from "../solveHelper/solveUpperFace";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 import { solveFixSecondLayer } from "../solveHelper/solveFixSecondLayer";
+import { solveBottomFace } from "../solveHelper/solveBottomFace";
 
 export class CubeSolver {
 
@@ -19,6 +20,7 @@ export class CubeSolver {
         solveUpperFace(this.cube);
         solveSecondLayer(this.cube);
         solveFixSecondLayer(this.cube);
+        solveBottomFace(this.cube);
         return '';
     }
 
