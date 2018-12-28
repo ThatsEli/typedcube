@@ -26,7 +26,6 @@ export function solveSecondLayer(cube: Cube): void {
 					break;
 			}
 			logManager.log('Error while getting colors for solving the second layer', LogLevel.error);
-			process.exit();
 			return '';
 		},
 
@@ -35,7 +34,6 @@ export function solveSecondLayer(cube: Cube): void {
         	if(cube.faces[face1].data[pos11][pos12] !== Tools.faceToString(face1) ||
         	   cube.faces[face2].data[pos21][pos22] !== Tools.faceToString(face2)) {
         		logManager.log('Error while positioning edge on second layer. ID:' + errorId, LogLevel.error);
-        		process.exit();
         	}
         },	
 

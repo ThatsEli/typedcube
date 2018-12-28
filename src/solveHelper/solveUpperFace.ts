@@ -13,7 +13,6 @@ export function solveUpperFace(cube: Cube) {
 
     if(!faceSolved(cube, Faces.U)) {
     	logManager.log('Error while solving upper face', LogLevel.error);
-    	process.exit();
     }
 
 	logManager.log('Solved white face', LogLevel.success);

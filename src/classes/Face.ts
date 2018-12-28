@@ -1,4 +1,3 @@
-
 export class Face {
 
     public data: Array<Array<cell | string>> = [ [],[],[] ];
@@ -27,12 +26,3 @@ export enum cell {
     L = 'L',
     B = 'B'
 }
-
-export const cellsArray = [
-    'U',
-    'R',
-    'F',
-    'D',
-    'L',
-    'B'    
-];

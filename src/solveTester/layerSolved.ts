@@ -1,5 +1,4 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
 
 export function layerSolved(cube: Cube, face: Faces, layer: number): boolean {
 

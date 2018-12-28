@@ -1,4 +1,4 @@
-import { Face, cellsArray } from "./Face";
+import { Face } from "./Face";
 import { CubeSolver } from "./CubeSolver";
 
 const CubeJS = require('cubejs');

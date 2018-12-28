@@ -6,7 +6,13 @@ export class logManager {
 
     public static log(message: string, level: number) {
     	if(level >= this.logLevel && this.enable) {
-    		console.log(message);
+            let prefix = '';
+            if(level === LogLevel.info) prefix += '[I]';
+            if(level === LogLevel.success) prefix += '[S]';
+            if(level === LogLevel.warning) prefix += '[W]';
+            if(level === LogLevel.error) prefix += '[E]';
+    		console.log(prefix + message);
+            if(level === LogLevel.error) { process.exit(); }
     	}
     }
 

@@ -46,13 +46,12 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
                     break;
             }
             logManager.log('Error while getting color for tile while solving white cross', LogLevel.error);
-            process.exit(); return '';
+            return '';
         },
 
         errorCheck: (face: Faces, pos1: number, pos2: number, compare: string, errorId: number) => {
             if(cube.faces[face].data[pos1][pos2] !== compare) {
                 logManager.log('Error while solving cross. ID: ' + errorId, LogLevel.error);
-                // process.exit();
             }
         },
 
@@ -245,7 +244,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
                     case 'L': cube.move('D\' L L'); break;
                     case 'B': cube.move('D D B B'); break;
                     case 'R': cube.move('D R R'); break;
-                    default: logManager.log('Error while solving bottom side', LogLevel.error); process.exit(); break;
+                    default: logManager.log('Error while solving bottom side', LogLevel.error); break;
                 }
                 downFace = cube.faces[Faces.D];
             };
@@ -265,6 +264,6 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
         helper.solveBottomFace();
     }
 
-    logManager.log('Solved white cross!', LogLevel.success);
+    logManager.log('Solved upper cross', LogLevel.success);
 
 }

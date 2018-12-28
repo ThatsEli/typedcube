@@ -92,7 +92,6 @@ export function solveBottomFace(cube: Cube): void {
 			cube.move('B R D R\' D\' B\''); // beam move
 			if(cube.faces[Faces.D].data[1].join('') !== 'DDD') {
 				logManager.log('Error while creating the beam', LogLevel.error);
-				process.exit();
 			}
 			cube.move('B R D R\' D\' B\''); // beam move
 		},
@@ -149,7 +148,6 @@ export function solveBottomFace(cube: Cube): void {
 
 	if(!faceSolved(cube, Faces.D)) {
 		logManager.log('Error while solving bottom face', LogLevel.error);
-		process.exit();
 	}
 
 	logManager.log('Solved bottom face', LogLevel.success);

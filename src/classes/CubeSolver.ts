@@ -1,4 +1,4 @@
-import { Cube, Faces } from "./Cube";
+import { Cube } from "./Cube";
 import { cubeSolved } from "../solveTester/cubeSolved";
 import { solveUpperFace } from "../solveHelper/solveUpperFace";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";

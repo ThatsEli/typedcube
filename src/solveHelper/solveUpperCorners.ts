@@ -1,9 +1,7 @@
 import { Cube, Faces } from "../classes/Cube";
-import { Face } from "../classes/Face";
 import { cornerOnFace } from "../solveTester/cornerOnFace";
 import { allCornersOnFace } from "../solveTester/allCornersOnFace";
 import { logManager, LogLevel } from "../manager/logManager";
-import { faceSolved } from "../solveTester/faceSolved";
 
 export function solveUpperCorners(cube: Cube): void {
 
@@ -38,13 +36,12 @@ export function solveUpperCorners(cube: Cube): void {
         			break;
         	}
    			logManager.log('Error while positioning corner for upper face', LogLevel.error);
-			process.exit(); return '';
+			return '';
         },
 
         errorCheck: (face: Faces, pos1: number, pos2: number, compare: string, errorId: number): void => {
         	if(cube.faces[face].data[pos1][pos2] !== compare) {
                 logManager.log('Error while solving corners. ID:' + errorId, LogLevel.error);
-        		process.exit();
         	}
         },
 
@@ -73,7 +70,7 @@ export function solveUpperCorners(cube: Cube): void {
             }
 
             logManager.log('Error while getting corner color', LogLevel.error);
-    		process.exit(); return '';
+    		return '';
 
         },
 
@@ -180,9 +177,9 @@ export function solveUpperCorners(cube: Cube): void {
 	        		case 'BR': cube.move('D D B\' D B D\' R D\' R\''); break;
 					case 'LB': cube.move('D\' L\' D\' D\' L D D B D\' B\''); break;
 
-                    default: logManager.log('Error while inserting bottom corner', LogLevel.error); process.exit(); break;
+                    default: logManager.log('Error while inserting bottom corner', LogLevel.error); break;
 	        	}
-            } else { logManager.log('Another error while inserting bottom corners', LogLevel.error); process.exit(); }
+            } else { logManager.log('Another error while inserting bottom corners', LogLevel.error); }
 
         },
 
@@ -198,7 +195,7 @@ export function solveUpperCorners(cube: Cube): void {
 		if(cornerOnFace(cube, 'U', Faces.D)) { helper.insertDownCorners(); }
 	}
 
-	logManager.log('Solved white corners!', LogLevel.success);
+	logManager.log('Solved upper corners', LogLevel.success);
 
 
 }

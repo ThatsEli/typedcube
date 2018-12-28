@@ -12,7 +12,7 @@ export function solveFixUpperCross(cube: Cube): void {
 			if(cube.faces[Faces.R].data[0][1] !== 'R') return 'R';
 			if(cube.faces[Faces.B].data[0][1] !== 'B') return 'B';
 			logManager.log('Error while fixing upper cross', LogLevel.error);
-			process.exit(); return '';
+			return '';
 		},
 
 		fixWrongEdge() {

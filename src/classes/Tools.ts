@@ -13,7 +13,7 @@ export class Tools {
 			case Faces.B: return 'B'; break;
 		}
 		logManager.log('Error while converting face to string', LogLevel.error);
-		process.exit(); return '';
+		return '';
 	}
 
 }
