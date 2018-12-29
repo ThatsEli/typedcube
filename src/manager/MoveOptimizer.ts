@@ -27,15 +27,16 @@ export class MoveOptimizer {
 			let currentMove: string = moves[i];
 
 			if(moves[i + 1] === currentMove && moves[i + 2] === currentMove && moves[i + 3] === currentMove) {
-				moves.splice(i, 4);
+				moves.splice(i, 4); continue;
 			}
 
 			if(moves[i + 1] === currentMove && moves[i + 2] === currentMove) {
-				moves.splice(i, 3, this.invertMove(currentMove));
+				moves.splice(i + 1, 2); moves[i] = this.invertMove(currentMove);
+				continue;
 			}
 
 			if(this.invertMove(currentMove) === moves[i+1]) {
-				moves.slice(i, 1);
+				moves.slice(i, 2); continue;
 			}
 
 		}
