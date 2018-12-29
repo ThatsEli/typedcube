@@ -4,6 +4,7 @@ import { solveUpperFace } from "../solveHelper/solveUpperFace";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 import { solveFixSecondLayer } from "../solveHelper/solveFixSecondLayer";
 import { solveBottomFace } from "../solveHelper/solveBottomFace";
+import { solveThirdLayer } from "../solveHelper/solveThirdLayer";
 
 export class CubeSolver {
 
@@ -21,6 +22,9 @@ export class CubeSolver {
         solveSecondLayer(this.cube);
         solveFixSecondLayer(this.cube);
         solveBottomFace(this.cube);
+        console.log(this.cube.getMoves().length);
+        solveThirdLayer(this.cube);
+        console.log(this.cube.getMoves().length);
         return '';
     }
 
