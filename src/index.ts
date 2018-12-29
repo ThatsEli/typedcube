@@ -1,6 +1,6 @@
 import { Cube } from "./classes/Cube";
 
-let x = new Cube('RDUDULBBLDFFBRFFRLUDBBFUDBLRRDUDUBRFDFLRLLULBRLFUBDUFR');
+let x = new Cube('LDBBUBDBULURURUFFULDBUFRLRRDFULDDDBRURFDLFRFBDLFLBRBLF');
 
 while(true) {
 	let c = new Cube();

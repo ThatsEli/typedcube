@@ -46,10 +46,10 @@ export class Cube {
         this.moves = this.moves.concat(move.split(' '));
     }
 
-    public solve(): string {
+    public solve(): void {
         let solver = new CubeSolver(this);
         console.log(this.originalState);
-        return solver.getSolve();
+        solver.solveCube();
     }
 
     public getFace(face: number): Face {

@@ -1,10 +1,11 @@
-import { Cube } from "./Cube";
+import { Cube, Faces } from "./Cube";
 import { cubeSolved } from "../solveTester/cubeSolved";
 import { solveUpperFace } from "../solveHelper/solveUpperFace";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 import { solveFixSecondLayer } from "../solveHelper/solveFixSecondLayer";
 import { solveBottomFace } from "../solveHelper/solveBottomFace";
 import { solveThirdLayer } from "../solveHelper/solveThirdLayer";
+import { logManager, LogLevel } from "../manager/logManager";
 
 export class CubeSolver {
 
@@ -14,18 +15,20 @@ export class CubeSolver {
         this.cube = cube;
     }
 
-    public getSolve(): string {
+    public solveCube(): void {
         if(cubeSolved(this.cube)) {
-            return 'Solved!';
+            return;
         }
         solveUpperFace(this.cube);
         solveSecondLayer(this.cube);
         solveFixSecondLayer(this.cube);
         solveBottomFace(this.cube);
-        console.log(this.cube.getMoves().length);
         solveThirdLayer(this.cube);
-        console.log(this.cube.getMoves().length);
-        return '';
+        if(!cubeSolved(this.cube)) {
+            logManager.log('Error while solving the cube', LogLevel.error);
+        } else {
+            logManager.log('Solved cube', LogLevel.success);
+        }
     }
 
 
