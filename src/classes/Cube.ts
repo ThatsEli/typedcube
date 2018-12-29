@@ -1,5 +1,6 @@
 import { Face } from "./Face";
 import { CubeSolver } from "./CubeSolver";
+import { MoveOptimizer } from "../manager/MoveOptimizer";
 
 const CubeJS = require('cubejs');
 
@@ -18,9 +19,11 @@ export class Cube {
         this._faces = value;
         console.error('DO NEVER CALL THIS / YOU FUCKED UP');
     }
-    private cube = new CubeJS();
-    private moves: String[] = [];
     public originalState: string = '';
+
+    private cube = new CubeJS();
+    private moves: string[] = [];
+    private moveOptimizer: MoveOptimizer = new MoveOptimizer(this);
 
     constructor(stateString?: string) {
 
@@ -38,7 +41,8 @@ export class Cube {
     }
 
     public getMoves() {
-        return this.moves.join('');
+        return this.moveOptimizer.optimizeMoves(this.moves).join(' ');
+        // return this.moves.join(' ');
     }
 
     public move(move: string) {
