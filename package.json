@@ -1,7 +1,7 @@
 {
-  "name": "webpacktemplate",
+  "name": "typedcube",
   "version": "1.0.0",
-  "description": "Description here",
+  "description": "A Rubiks's cube solver written in TypeScript with primitive methods",
   "main": "lib/bundle.js",
   "directories": {
     "lib": "lib"
@@ -12,20 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "GITREPO"
+    "url": "https://github.com/ThatsEli/typedcube"
   },
   "keywords": [
-    "KEYWORD"
+    "rubiks",
+    "cube",
+    "solving"
   ],
   "author": "ThatsEli <public@thatseliyt.de> (http://thatseliyt.de)",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.12.0",
-    "ts-loader": "^5.2.2",
-    "typescript": "^3.1.3",
-    "webpack": "^4.22.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-livereload-plugin": "^2.1.1"
+    "typescript": "^3.1.3"
   },
   "dependencies": {
     "cubejs": "^1.3.1"

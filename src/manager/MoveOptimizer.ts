@@ -20,8 +20,6 @@ export class MoveOptimizer {
 
 		let moves = movesInput;
 
-		console.log('Pre:' + moves.length);
-
 		for (let i = 0; i < 3; i++) {
 			
 			for (let i = 0; i < moves.length; i++) {
@@ -44,8 +42,6 @@ export class MoveOptimizer {
 		}
 		
 		if(!this.testMove(moves.join(' '))) { LogManager.log('Error while optimizing moves', LogLevel.error); }
-
-		console.log('Aft:' + moves.length);
 		
 		return moves;
 		
