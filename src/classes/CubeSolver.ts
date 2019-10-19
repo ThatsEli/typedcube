@@ -5,7 +5,7 @@ import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 import { solveFixSecondLayer } from "../solveHelper/solveFixSecondLayer";
 import { solveBottomFace } from "../solveHelper/solveBottomFace";
 import { solveThirdLayer } from "../solveHelper/solveThirdLayer";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 
 export class CubeSolver {
 
@@ -25,9 +25,9 @@ export class CubeSolver {
         solveBottomFace(this.cube);
         solveThirdLayer(this.cube);
         if(!cubeSolved(this.cube)) {
-            logManager.log('Error while solving the cube', LogLevel.error);
+            LogManager.log('Error while solving the cube', LogLevel.error);
         } else {
-            logManager.log('Solved cube', LogLevel.success);
+            LogManager.log('Solved cube', LogLevel.success);
         }
     }
 

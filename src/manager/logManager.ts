@@ -1,8 +1,8 @@
 
-export class logManager {
+export class LogManager {
 
     public static enable: boolean = true;
-    public static logLevel: number = 2;
+    public static logLevel: number = 4;
 
     public static log(message: string, level: number) {
     	if(level >= this.logLevel && this.enable) {

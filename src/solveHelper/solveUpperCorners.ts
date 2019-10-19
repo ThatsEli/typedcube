@@ -1,7 +1,7 @@
 import { Cube, Faces } from "../classes/Cube";
 import { cornerOnFace } from "../solveTester/cornerOnFace";
 import { allCornersOnFace } from "../solveTester/allCornersOnFace";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 
 export function solveUpperCorners(cube: Cube): void {
 
@@ -35,13 +35,13 @@ export function solveUpperCorners(cube: Cube): void {
         			if(faceData[2][2] == 'U') { return 'R'; }
         			break;
         	}
-   			logManager.log('Error while positioning corner for upper face', LogLevel.error);
+   			LogManager.log('Error while positioning corner for upper face', LogLevel.error);
 			return '';
         },
 
         errorCheck: (face: Faces, pos1: number, pos2: number, compare: string, errorId: number): void => {
         	if(cube.faces[face].data[pos1][pos2] !== compare) {
-                logManager.log('Error while solving corners. ID:' + errorId, LogLevel.error);
+                LogManager.log('Error while solving corners. ID:' + errorId, LogLevel.error);
         	}
         },
 
@@ -69,7 +69,7 @@ export function solveUpperCorners(cube: Cube): void {
             		break;
             }
 
-            logManager.log('Error while getting corner color', LogLevel.error);
+            LogManager.log('Error while getting corner color', LogLevel.error);
     		return '';
 
         },
@@ -79,7 +79,7 @@ export function solveUpperCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.F),
             	colors = helper.getColors(Faces.F, position);
 
-            logManager.log('Inserting corner on the front face', LogLevel.info);
+            LogManager.log('Inserting corner on the front face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'LF') { cube.move('D L D\' L\''); helper.errorCheck(Faces.U, 2, 0, 'U', 9); }
@@ -100,7 +100,7 @@ export function solveUpperCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.L),
             	colors = helper.getColors(Faces.L, position);
 
-            logManager.log('Inserting corner on the left face', LogLevel.info);
+            LogManager.log('Inserting corner on the left face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'BL') { cube.move('D B D\' B\''); helper.errorCheck(Faces.U, 0, 0, 'U', 17); }
@@ -121,7 +121,7 @@ export function solveUpperCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.B),
             	colors = helper.getColors(Faces.B, position);
 
-            logManager.log('Inserting corner on the back face', LogLevel.info);
+            LogManager.log('Inserting corner on the back face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'RB') { cube.move('D R D\' R\''); helper.errorCheck(Faces.U, 0, 2, 'U', 25); }
@@ -142,7 +142,7 @@ export function solveUpperCorners(cube: Cube): void {
             let position = helper.positionCorner(Faces.R),
             	colors = helper.getColors(Faces.R, position);
 
-            logManager.log('Inserting corner on the right face', LogLevel.info);
+            LogManager.log('Inserting corner on the right face', LogLevel.info);
 
 			if(position === 'L') {
 				if(colors === 'FR') { cube.move('D F D\' F\''); helper.errorCheck(Faces.U, 2, 2, 'U', 33); }
@@ -160,7 +160,7 @@ export function solveUpperCorners(cube: Cube): void {
 
         insertDownCorners: (): void => {
 
-            logManager.log('Inserting corner on the down face', LogLevel.info);
+            LogManager.log('Inserting corner on the down face', LogLevel.info);
 
         	let faceData = cube.faces[Faces.D].data;
 
@@ -177,9 +177,9 @@ export function solveUpperCorners(cube: Cube): void {
 	        		case 'BR': cube.move('D D B\' D B D\' R D\' R\''); break;
 					case 'LB': cube.move('D\' L\' D\' D\' L D D B D\' B\''); break;
 
-                    default: logManager.log('Error while inserting bottom corner', LogLevel.error); break;
+                    default: LogManager.log('Error while inserting bottom corner', LogLevel.error); break;
 	        	}
-            } else { logManager.log('Another error while inserting bottom corners', LogLevel.error); }
+            } else { LogManager.log('Another error while inserting bottom corners', LogLevel.error); }
 
         },
 
@@ -195,7 +195,7 @@ export function solveUpperCorners(cube: Cube): void {
 		if(cornerOnFace(cube, 'U', Faces.D)) { helper.insertDownCorners(); }
 	}
 
-	logManager.log('Solved upper corners', LogLevel.success);
+	LogManager.log('Solved upper corners', LogLevel.success);
 
 
 }

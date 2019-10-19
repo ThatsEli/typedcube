@@ -1,5 +1,5 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { faceSolved } from "../solveTester/faceSolved";
 
 interface FaceSolution {
@@ -81,7 +81,7 @@ export function solveBottomFace(cube: Cube): void {
 				case 'BL': cube.move('D'); break;
 				case 'BR': cube.move('D D'); break;
 
-				default: logManager.log('Error while orienting bottom face', LogLevel.error); break;
+				default: LogManager.log('Error while orienting bottom face', LogLevel.error); break;
 			}
 		},
 
@@ -91,7 +91,7 @@ export function solveBottomFace(cube: Cube): void {
 			}
 			cube.move('B R D R\' D\' B\''); // beam move
 			if(cube.faces[Faces.D].data[1].join('') !== 'DDD') {
-				logManager.log('Error while creating the beam', LogLevel.error);
+				LogManager.log('Error while creating the beam', LogLevel.error);
 			}
 			cube.move('B R D R\' D\' B\''); // beam move
 		},
@@ -147,9 +147,9 @@ export function solveBottomFace(cube: Cube): void {
 	helper.completeBottomFace();
 
 	if(!faceSolved(cube, Faces.D)) {
-		logManager.log('Error while solving bottom face', LogLevel.error);
+		LogManager.log('Error while solving bottom face', LogLevel.error);
 	}
 
-	logManager.log('Solved bottom face', LogLevel.success);
+	LogManager.log('Solved bottom face', LogLevel.success);
 
 }

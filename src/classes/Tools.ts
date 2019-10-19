@@ -1,5 +1,5 @@
 import { Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 
 export class Tools {
 
@@ -12,7 +12,7 @@ export class Tools {
 			case Faces.L: return 'L'; break;
 			case Faces.B: return 'B'; break;
 		}
-		logManager.log('Error while converting face to string', LogLevel.error);
+		LogManager.log('Error while converting face to string', LogLevel.error);
 		return '';
 	}
 

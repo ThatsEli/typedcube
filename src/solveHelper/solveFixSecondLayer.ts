@@ -1,5 +1,5 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { layerSolved } from "../solveTester/layerSolved";
 import { solveSecondLayer } from "../solveHelper/solveSecondLayer";
 
@@ -40,7 +40,7 @@ export function solveFixSecondLayer(cube: Cube): void {
 		!layerSolved(cube, Faces.B, 1) || !layerSolved(cube, Faces.R, 1)
 	) {
 		needToFix = true;
-		logManager.log('Fixing second layer', LogLevel.info);
+		LogManager.log('Fixing second layer', LogLevel.info);
 		helper.positionFrontWrongCorners();
 		helper.positionLeftWrongCorners();
 		helper.positionBackWrongCorners();
@@ -48,7 +48,7 @@ export function solveFixSecondLayer(cube: Cube): void {
 	}
 
 	if(needToFix) {
-		logManager.log('Fixed second layers', LogLevel.success);
+		LogManager.log('Fixed second layers', LogLevel.success);
 	}
 
 }

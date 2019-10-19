@@ -1,5 +1,5 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { Tools } from "../classes/Tools";
 
 export function solveSecondLayer(cube: Cube): void {
@@ -25,7 +25,7 @@ export function solveSecondLayer(cube: Cube): void {
 					return cube.faces[Faces.R].data[2][1] + cube.faces[Faces.D].data[1][2];
 					break;
 			}
-			logManager.log('Error while getting colors for solving the second layer', LogLevel.error);
+			LogManager.log('Error while getting colors for solving the second layer', LogLevel.error);
 			return '';
 		},
 
@@ -33,7 +33,7 @@ export function solveSecondLayer(cube: Cube): void {
 					 face2: Faces, pos21: number, pos22: number, errorId: number): void => {
         	if(cube.faces[face1].data[pos11][pos12] !== Tools.faceToString(face1) ||
         	   cube.faces[face2].data[pos21][pos22] !== Tools.faceToString(face2)) {
-        		logManager.log('Error while positioning edge on second layer. ID:' + errorId, LogLevel.error);
+        		LogManager.log('Error while positioning edge on second layer. ID:' + errorId, LogLevel.error);
         	}
         },	
 
@@ -205,13 +205,13 @@ export function solveSecondLayer(cube: Cube): void {
 		helper.layerCornerOnFace(Faces.F) || helper.layerCornerOnFace(Faces.L) ||
 		helper.layerCornerOnFace(Faces.B) || helper.layerCornerOnFace(Faces.R)
 	) {
-		logManager.log('Positioning corner on second layer', LogLevel.info);
+		LogManager.log('Positioning corner on second layer', LogLevel.info);
 		helper.positionFrontCorners();
 		helper.positionLeftCorners();
 		helper.positionBackCorners();
 		helper.positionRightCorners();
 	}
 
-	logManager.log('Solved second layer', LogLevel.success);
+	LogManager.log('Solved second layer', LogLevel.success);
 
 }

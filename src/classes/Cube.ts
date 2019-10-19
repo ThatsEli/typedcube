@@ -1,6 +1,6 @@
 import { Face } from "./Face";
 import { CubeSolver } from "./CubeSolver";
-import { MoveOptimizer } from "../manager/MoveOptimizer";
+import { MoveOptimizer } from "../manager/moveOptimizer";
 
 const CubeJS = require('cubejs');
 
@@ -52,7 +52,6 @@ export class Cube {
 
     public solve(): void {
         let solver = new CubeSolver(this);
-        console.log(this.originalState);
         solver.solveCube();
     }
 

@@ -2,7 +2,7 @@ import { Cube, Faces } from "../classes/Cube";
 import { Face } from "../classes/Face";
 import { edgeOnFace } from "../solveTester/edgeOnFace";
 import { crossOnFace } from "../solveTester/crossOnFace";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 
 export function solveUpperCross(cube: Cube) { // solve the white cross
 
@@ -45,19 +45,19 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
                     if(position === '21') { return cube.faces[Faces.D].data[1][0]; }
                     break;
             }
-            logManager.log('Error while getting color for tile while solving white cross', LogLevel.error);
+            LogManager.log('Error while getting color for tile while solving white cross', LogLevel.error);
             return '';
         },
 
         errorCheck: (face: Faces, pos1: number, pos2: number, compare: string, errorId: number) => {
             if(cube.faces[face].data[pos1][pos2] !== compare) {
-                logManager.log('Error while solving cross. ID: ' + errorId, LogLevel.error);
+                LogManager.log('Error while solving cross. ID: ' + errorId, LogLevel.error);
             }
         },
 
         solveFontFace: () => {
 
-            logManager.log('Solving tile on the front face', LogLevel.info);
+            LogManager.log('Solving tile on the front face', LogLevel.info);
 
             let face: Face = cube.faces[Faces.F], color: string;
             if(face.data[0][1] === 'U') {
@@ -101,7 +101,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
 
         solveLeftFace: () => {
 
-            logManager.log('Solving tile on the left face', LogLevel.info);
+            LogManager.log('Solving tile on the left face', LogLevel.info);
 
             let face: Face = cube.faces[Faces.L], color: string;
             if(face.data[0][1] === 'U') {
@@ -145,7 +145,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
 
         solveBackFace: () => {
 
-            logManager.log('Solving tile on the back face', LogLevel.info);
+            LogManager.log('Solving tile on the back face', LogLevel.info);
 
             let face: Face = cube.faces[Faces.B], color: string;
             if(face.data[0][1] === 'U') {
@@ -189,7 +189,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
 
         solveRightFace: () => {
 
-            logManager.log('Solving tile on the right face', LogLevel.info);
+            LogManager.log('Solving tile on the right face', LogLevel.info);
 
             let face: Face = cube.faces[Faces.R], color: string;
             if(face.data[0][1] === 'U') {
@@ -233,7 +233,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
 
         solveBottomFace: () => {
 
-            logManager.log('Solving tile on the bottom face', LogLevel.info);
+            LogManager.log('Solving tile on the bottom face', LogLevel.info);
 
             let downFace = cube.faces[Faces.D];
 
@@ -244,7 +244,7 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
                     case 'L': cube.move('D\' L L'); break;
                     case 'B': cube.move('D D B B'); break;
                     case 'R': cube.move('D R R'); break;
-                    default: logManager.log('Error while solving bottom side', LogLevel.error); break;
+                    default: LogManager.log('Error while solving bottom side', LogLevel.error); break;
                 }
                 downFace = cube.faces[Faces.D];
             };
@@ -264,6 +264,6 @@ export function solveUpperCross(cube: Cube) { // solve the white cross
         helper.solveBottomFace();
     }
 
-    logManager.log('Solved upper cross', LogLevel.success);
+    LogManager.log('Solved upper cross', LogLevel.success);
 
 }

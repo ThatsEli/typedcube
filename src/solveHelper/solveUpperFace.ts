@@ -1,6 +1,6 @@
 import { Cube, Faces } from "../classes/Cube";
 import { faceSolved } from "../solveTester/faceSolved";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { solveUpperCross } from "./solveUpperCross";
 import { solveFixUpperCross } from "./solveFixUpperCross";
 import { solveUpperCorners } from "./solveUpperCorners";
@@ -14,9 +14,9 @@ export function solveUpperFace(cube: Cube) {
     solveFixUpperCorners(cube);
     
     if(!faceSolved(cube, Faces.U)) {
-    	logManager.log('Error while solving upper face', LogLevel.error);
+    	LogManager.log('Error while solving upper face', LogLevel.error);
     }
 
-	logManager.log('Solved white face', LogLevel.success);
+	LogManager.log('Solved white face', LogLevel.success);
 
 }

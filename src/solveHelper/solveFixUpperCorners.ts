@@ -1,5 +1,5 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { layerSolved } from "../solveTester/layerSolved";
 import { solveUpperCorners } from "./solveUpperCorners";
 
@@ -14,7 +14,7 @@ export function solveFixUpperCorners(cube: Cube): void {
 			if(cube.faces[Faces.B].data[0][2] !== 'B' || cube.faces[Faces.L].data[0][2] !== 'L') { return 'BL'; }
 			if(cube.faces[Faces.B].data[0][0] !== 'B' || cube.faces[Faces.R].data[0][0] !== 'R') { return 'BR'; }
 
-			logManager.log('Error while fixing first layer', LogLevel.error);
+			LogManager.log('Error while fixing first layer', LogLevel.error);
 			process.exit(); return '';
 		},
 
@@ -26,7 +26,7 @@ export function solveFixUpperCorners(cube: Cube): void {
 				case 'BL': cube.move('L\' D\' L'); solveUpperCorners(cube); break;
 				case 'BR': cube.move('R D R\''); solveUpperCorners(cube); break;
 
-				default: logManager.log('Error 2 while fixing first layer', LogLevel.error) break;
+				default: LogManager.log('Error 2 while fixing first layer', LogLevel.error); break;
 			}
 		},
 
@@ -39,11 +39,11 @@ export function solveFixUpperCorners(cube: Cube): void {
 		!layerSolved(cube, Faces.B, 0) || !layerSolved(cube, Faces.R, 0)
 	) {
 		needToFix = true;
-		logManager.log('Fixing upper corners', LogLevel.info);
+		LogManager.log('Fixing upper corners', LogLevel.info);
 		let position = helpers.getWrongCorners();
 		helpers.fixWrongCorner(position);
 	}
 
-	if(needToFix) logManager.log('Fixed upper corners', LogLevel.success);
+	if(needToFix) LogManager.log('Fixed upper corners', LogLevel.success);
 
 }

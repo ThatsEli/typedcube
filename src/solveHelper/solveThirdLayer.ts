@@ -1,5 +1,5 @@
 import { Cube, Faces } from "../classes/Cube";
-import { logManager, LogLevel } from "../manager/logManager";
+import { LogManager, LogLevel } from "../manager/logManager";
 import { thirdLayerSolved } from "../solveTester/thirdLayerSolved";
 
 export function solveThirdLayer(cube: Cube) {
@@ -59,7 +59,7 @@ export function solveThirdLayer(cube: Cube) {
 			}
 
 			if(!(helper.getThirdLayer(Faces.L)[1] === 'L' && helper.getThirdLayer(Faces.F)[1] === 'F' && helper.getThirdLayer(Faces.R)[1] === 'R' && helper.getThirdLayer(Faces.B)[1] === 'B')) {
-				logManager.log('Error while positioning edges for third layer', LogLevel.error);
+				LogManager.log('Error while positioning edges for third layer', LogLevel.error);
 			}
 		},
 
